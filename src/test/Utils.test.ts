@@ -12,6 +12,29 @@ describe('Utils test suite', () => {
       const actual = sut.toUpperCase('Hello');
       expect(actual).toBe('HELLO');
     })
+
+    it('should throw error on invalid argument - function', () => {
+      function expectError() {
+        const actual = sut.toUpperCase('');
+      }
+      expect(expectError).toThrow('Invalid argument!');
+    })
+
+    it('should throw error on invalid argument - arrow function', () => {
+      expect(() => sut.toUpperCase('')).toThrow('Invalid argument!');
+    })
+
+    it('should throw error on invalid argument - try catch block', (done) => {
+      try {
+        sut.toUpperCase('');
+        done('should have thrown error');
+        //fail('should have thrown error'); // Another way to fix this, but have a issue open on jest repo to fix 'fail is not defined'
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+        expect(error).toHaveProperty('message', 'Invalid argument!');
+        done();
+      }
+    })
   })
 
   it('should return uppercase of valid string', () => {
