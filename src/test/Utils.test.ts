@@ -10,6 +10,17 @@ describe('Utils test suite', () => {
     expect(actual).toBe(expected);
   })
 
+  describe('toUpperCase', () => {
+    it.each([
+      { input: 'abc', expected: 'ABC' },
+      { input: 'My-String', expected: 'MY-STRING' },
+      { input: 'def', expected: 'DEF' },
+    ])('should return uppercase of $input', ({ input, expected }) => {
+      const actual = toUpperCase(input);
+      expect(actual).toBe(expected);
+    })
+  })
+
   describe('getStringInfo', () => {
     it('should return right length', () => {
       const actual = getStringInfo('My-String');
