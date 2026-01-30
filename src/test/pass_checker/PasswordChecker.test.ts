@@ -48,4 +48,16 @@ describe('PasswordChecker', () => {
     expect(actual.valid).toBe(true);
     expect(actual.reasons).toHaveLength(0);
   });
+
+  it('should return false when admin password has no numbers', () => {
+    const actual = sut.checkAdminPassword('Abcdefgh');
+    expect(actual.valid).toBe(false);
+    expect(actual.reasons).toContain(PasswordErrors.NO_NUMBER);
+  });
+
+  it('should return true when admin password has numbers', () => {
+    const actual = sut.checkAdminPassword('Abcdefgh1');
+    expect(actual.valid).toBe(true);
+    expect(actual.reasons).toHaveLength(0);
+  });
 });
