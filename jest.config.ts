@@ -7,7 +7,10 @@ const config: Config.InitialOptions = {
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/app/**/*.ts',
-  ]
+  ],
+  moduleNameMapper: {
+    '^uuid$': '<rootDir>/src/test/doubles/__mocks__/uuid.ts'
+  }
 }
 
 export default config;
